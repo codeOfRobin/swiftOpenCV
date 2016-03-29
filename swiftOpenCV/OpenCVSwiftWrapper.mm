@@ -15,12 +15,56 @@ using namespace std;
 
 @implementation OpenCVSwiftWrapper : NSObject
 
-+ (UIImage *)processImageWithOpenCV:(UIImage*)inputImage {
-  Mat mat = [self cvMatFromUIImage:inputImage];
-  
-  // do your processing here
-  
-  return [self UIImageFromCVMat:mat];
+bool myfunction (int i,int j) { return (i<j); }
+
++ (UIImage *)processImageWithOpenCV:(UIImage*)inputImage
+{
+    Mat mat = [self cvMatFromUIImage:inputImage];
+
+    // do your processing here
+    int const max_BINARY_value = 2147483647;
+    cv::Mat src_gray=[self cvMatFromUIImage:inputImage];
+    cv::Mat dst;
+    dst=src_gray;
+    cv::cvtColor(src_gray, dst, cv::COLOR_RGB2GRAY);
+    cv::Mat canny_output;
+    std::vector<std::vector<cv::Point> > contours;
+    std::vector<cv::Vec4i> hierarchy;
+    
+    cv::RNG rng(12345);
+    
+    cv::threshold( dst, dst, 0.1, max_BINARY_value,cv::THRESH_OTSU );
+    
+    cv::Mat contourOutput = dst.clone();
+    cv::findContours( contourOutput, contours, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE );
+    
+    sort(contours.begin(), contours.end(), [](const vector<cv::Point>& c1, const vector<cv::Point>& c2){
+        return contourArea(c1, false) < contourArea(c2, false);
+    });
+    reverse(contours.begin(), contours.end());
+    
+    std::vector<std::vector<cv::Point> > newContours;
+    for (int i=0 ; i<6;i++)
+    {
+        newContours.push_back(contours[i]);
+    }
+    newContours.erase(newContours.begin() + 0);
+    contours = newContours;
+    
+    //Draw the contours
+    cv::Mat contourImage(dst.size(), CV_8UC3, cv::Scalar(0,0,0));
+    cv::Scalar colors[3];
+    colors[0] = cv::Scalar(255, 0, 0);
+    colors[1] = cv::Scalar(0, 255, 0);
+    colors[2] = cv::Scalar(0, 0, 255);
+    for (size_t idx = 0; idx < contours.size(); idx++) {
+//        cv::drawContours(contourImage, contours, idx, colors[idx % 3]);
+    cv::Rect box = boundingRect(contours[idx]);
+    rectangle(contourImage, box, colors[idx%3]);
+        NSLog(@"%f", contourArea(contours[idx],false));
+    }
+    
+    return [self UIImageFromCVMat:contourImage];
 }
 
 

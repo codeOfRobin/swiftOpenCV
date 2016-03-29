@@ -13,6 +13,7 @@
 		4232541A1CAAA27300D43AE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 423254191CAAA27300D43AE3 /* Assets.xcassets */; };
 		4232541D1CAAA27300D43AE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4232541B1CAAA27300D43AE3 /* LaunchScreen.storyboard */; };
 		423254271CAAA45900D43AE3 /* OpenCVSwiftWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 423254261CAAA45900D43AE3 /* OpenCVSwiftWrapper.mm */; };
+		428876AE1CAAC47F001357F3 /* screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 428876AD1CAAC47F001357F3 /* screen.png */; };
 		8B3AFF562EC8FFD510FECAF6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 165CF703E4F075AEED45B1A3 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		423254241CAAA45900D43AE3 /* swiftOpenCV-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "swiftOpenCV-Bridging-Header.h"; sourceTree = "<group>"; };
 		423254251CAAA45900D43AE3 /* OpenCVSwiftWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVSwiftWrapper.h; sourceTree = "<group>"; };
 		423254261CAAA45900D43AE3 /* OpenCVSwiftWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVSwiftWrapper.mm; sourceTree = "<group>"; };
+		428876AD1CAAC47F001357F3 /* screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen.png; sourceTree = "<group>"; };
 		5EE9F6A51FFE4DB67EE8C401 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B4CBF62FE193779082BECCD9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +79,7 @@
 				423254121CAAA27200D43AE3 /* AppDelegate.swift */,
 				423254141CAAA27200D43AE3 /* ViewController.swift */,
 				423254251CAAA45900D43AE3 /* OpenCVSwiftWrapper.h */,
+				428876AD1CAAC47F001357F3 /* screen.png */,
 				423254261CAAA45900D43AE3 /* OpenCVSwiftWrapper.mm */,
 				423254161CAAA27300D43AE3 /* Main.storyboard */,
 				423254191CAAA27300D43AE3 /* Assets.xcassets */,
@@ -157,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4232541D1CAAA27300D43AE3 /* LaunchScreen.storyboard in Resources */,
+				428876AE1CAAC47F001357F3 /* screen.png in Resources */,
 				4232541A1CAAA27300D43AE3 /* Assets.xcassets in Resources */,
 				423254181CAAA27300D43AE3 /* Main.storyboard in Resources */,
 			);
