@@ -12,14 +12,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let image = UIImage(named: "screen")
+        let image = UIImage(named: "com1")
         let imgView = UIImageView(frame: self.view.bounds)
         imgView.image = OpenCVSwiftWrapper.processImageWithOpenCV(image)
         self.view.addSubview(imgView)
         let img2View = UIImageView(image: image)
         img2View.frame = self.view.bounds
         self.view.addSubview(img2View)
-        img2View.alpha = 0.5
+        img2View.alpha = 0.2
         // Do any additional setup after loading the view, typically from a nib.
     }
 

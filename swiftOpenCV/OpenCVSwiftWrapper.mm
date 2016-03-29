@@ -33,7 +33,7 @@ bool myfunction (int i,int j) { return (i<j); }
     
     cv::RNG rng(12345);
     
-    cv::threshold( dst, dst, 0.1, max_BINARY_value,cv::THRESH_OTSU );
+    cv::threshold( dst, dst, 1, max_BINARY_value,cv::THRESH_OTSU );
     
     cv::Mat contourOutput = dst.clone();
     cv::findContours( contourOutput, contours, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE );
@@ -42,14 +42,50 @@ bool myfunction (int i,int j) { return (i<j); }
         return contourArea(c1, false) < contourArea(c2, false);
     });
     reverse(contours.begin(), contours.end());
-    
+//    
     std::vector<std::vector<cv::Point> > newContours;
-    for (int i=0 ; i<6;i++)
+//    for (int i=0 ; i<9;i++)
+//    {
+//        newContours.push_back(contours[i]);
+//    }
+//    newContours.erase(newContours.begin() + 0);
+    
+    int i = 0;
+    double lastLevelWidth = 0, lastLevelHeight = 0;
+    bool hasFoundSecondLevel = false, hasFoundFirstLevel = false;
+    if(contours.size() != 0)
     {
-        newContours.push_back(contours[i]);
+        while (true)
+        {
+            cv::Rect box = boundingRect(contours[i]);
+            if (lastLevelWidth == 0)
+            {
+                lastLevelWidth = box.width;
+                lastLevelHeight = box.height;
+                hasFoundFirstLevel = true;
+            }
+            
+            else if (box.width < lastLevelHeight/3 and box.height <lastLevelHeight/3)
+            {
+                if(hasFoundFirstLevel and hasFoundSecondLevel)
+                {
+                    break;
+                }
+                else if (hasFoundSecondLevel and !hasFoundSecondLevel)
+                {
+                    hasFoundSecondLevel = true;
+                    newContours.push_back(contours[i]);
+                }
+            }
+            else
+            {
+                newContours.push_back(contours[i]);
+            }
+            
+        }
     }
-    newContours.erase(newContours.begin() + 0);
-    contours = newContours;
+    
+//    contours = newContours;
     
     //Draw the contours
     cv::Mat contourImage(dst.size(), CV_8UC3, cv::Scalar(0,0,0));
